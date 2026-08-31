@@ -1,0 +1,32 @@
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 24px;
+  text-align: center;
+}
+
+.status {
+  font-family: var(--mono);
+  font-size: 15px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.status-loading {
+  color: var(--text);
+}
+
+.status-ok {
+  color: #1a7f37;
+  border-color: #1a7f37;
+}
+
+.status-error {
+  color: #cf222e;
+  border-color: #cf222e;
+}
