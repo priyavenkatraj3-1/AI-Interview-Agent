@@ -30,3 +30,143 @@
   color: #cf222e;
   border-color: #cf222e;
 }
+
+.card {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.error-text {
+  color: #cf222e;
+}
+
+.text-input {
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.primary-button {
+  font: inherit;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.company-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.company-option {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.company-option.selected {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.aptitude-header {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+}
+
+.question-topic {
+  font-size: 13px;
+  text-transform: capitalize;
+  color: var(--text);
+}
+
+.question-text {
+  font-size: 18px;
+  color: var(--text-h);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option {
+  font: inherit;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.option.selected {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.option.correct {
+  border-color: #1a7f37;
+  color: #1a7f37;
+}
+
+.option.incorrect {
+  border-color: #cf222e;
+  color: #cf222e;
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.feedback {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--code-bg);
+}
+
+.explanation {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.result-score {
+  font-size: 32px;
+  color: var(--text-h);
+}
+
+.topic-breakdown {
+  margin: 0;
+  padding-left: 20px;
+  text-transform: capitalize;
+}

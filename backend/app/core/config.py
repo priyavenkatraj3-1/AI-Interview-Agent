@@ -6,6 +6,7 @@ variables (populated from backend/.env in local development). Nothing here
 is hardcoded — see backend/.env.example for the full list of variables and
 backend/.env for actual local values (git-ignored).
 """
+import sys
 from functools import lru_cache
 from pathlib import Path
 from typing import List
@@ -16,6 +17,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 BACKEND_DIR = PROJECT_ROOT / "backend"
 DATABASE_DIR = PROJECT_ROOT / "database"
+
+# uvicorn is run from backend/, so the project root (where the standalone
+# agents/ package lives, per docs/architecture.md) isn't on sys.path by
+# default. Add it once here, since this module is imported before anything
+# in app/ that needs to `import agents`.
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 
 class Settings(BaseSettings):

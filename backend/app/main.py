@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
 from app.core.database import init_db
-from app.routes import health, sessions
+from app.routes import aptitude, health, sessions
 
 settings = get_settings()
 
@@ -28,6 +28,7 @@ app.add_middleware(
 
 app.include_router(health.router)
 app.include_router(sessions.router)
+app.include_router(aptitude.router)
 
 
 @app.on_event("startup")
