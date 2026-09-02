@@ -50,6 +50,15 @@ class Settings(BaseSettings):
     judge0_api_key: str = ""
     piston_api_url: str = ""
 
+    # --- Mock mode (Day 3: coding round) ---
+    # When true (the default — no Anthropic API credits currently
+    # available), Claude-backed stage agents that support it use a
+    # deterministic offline mock instead of a real API call. Mirrors
+    # agents/config.py's MOCK_MODE, which is what agent construction
+    # actually reads (kept separate per the agents/ <-> backend/ boundary
+    # documented in docs/architecture.md).
+    mock_mode: bool = True
+
     # --- Database ---
     database_url: str = f"sqlite:///{(DATABASE_DIR / 'interview_agent.db').as_posix()}"
 

@@ -53,6 +53,12 @@ EMIT_QUESTION_TOOL = {
         },
         "required": ["question", "options", "correct_option", "explanation"],
     },
+    # This tool definition is byte-identical on every call to this agent
+    # (it never varies with target_company/topic/pattern/difficulty), so
+    # it's the one genuinely cacheable static block here. Dynamic content
+    # (topic, difficulty, previously-asked questions) stays in the
+    # per-call user message, outside this cached block.
+    "cache_control": {"type": "ephemeral"},
 }
 
 # Malformed/duplicate generations are retried up to this many times before

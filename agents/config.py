@@ -19,3 +19,10 @@ load_dotenv(PROJECT_ROOT / "backend" / ".env")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 MODEL_CHEAP = os.getenv("MODEL_CHEAP", "claude-haiku-4-5-20251001")
 MODEL_STRONG = os.getenv("MODEL_STRONG", "claude-sonnet-5")
+
+# When true (the default — this project currently has no Anthropic API
+# credits), Claude-backed stage agents that support it construct a
+# deterministic offline mock implementation instead of a real API client
+# (see agents/code_problem_generator/code_problem_generator.py). Set
+# MOCK_MODE=false once credits/a valid ANTHROPIC_API_KEY are available.
+MOCK_MODE = os.getenv("MOCK_MODE", "true").strip().lower() in ("1", "true", "yes", "on")

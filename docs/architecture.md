@@ -105,6 +105,32 @@ All secrets/environment values are read from `backend/.env` (copy from
 - `CODE_EXECUTION_PROVIDER`, `JUDGE0_API_URL`, `JUDGE0_API_KEY`,
   `PISTON_API_URL` — reserved for the coding stage; not wired up yet.
 
+## Day 3 addition: Coding round
+
+Mirrors the aptitude round's shape exactly (`routes/coding.py` ->
+`services/coding_service.py` -> `agents/`), reusing the same
+`StageProgress.details` JSON-blob pattern — no new tables.
+
+- `agents/code_problem_generator/` — `CodeProblemGeneratorAgent` (real,
+  Claude tool-call) and `MockCodeProblemGeneratorAgent` (offline,
+  hand-verified fixture bank), both behind a `build_code_problem_generator()`
+  factory that switches on `MOCK_MODE`.
+- `agents/code_executor/executor.py` — runs candidate Python in a short-lived
+  local subprocess per test case (timeout, minimal env, POSIX rlimits where
+  available, a static denylist) — not an external sandbox service, and not a
+  Claude call, so it works the same regardless of `MOCK_MODE`.
+- `agents/grader/grader.py` — extended (not replaced) to also aggregate
+  coding test-case results into a pass/fail verdict, alongside the existing
+  aptitude MCQ path.
+- Endpoints: `start` / `current` / `run` (sample tests, non-scored) /
+  `submit` (hidden tests, scored, advances) / `result`. 2 problems per round
+  (`TOTAL_PROBLEMS`), Python only, for the MVP.
+- `MOCK_MODE` (env var, default `true` — no Anthropic API credits currently
+  available) is read once in `agents/config.py`; set it to `false` (with a
+  valid `ANTHROPIC_API_KEY`) to use the real generator. Tests never require
+  a real key — the problem generator is monkeypatched with a deterministic
+  fake in `tests/conftest.py`, same as the aptitude round's approach.
+
 ## Explicitly out of scope for Day 1
 
 - The actual aptitude / coding / technical / HR interview flows.

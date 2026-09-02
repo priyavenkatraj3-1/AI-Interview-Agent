@@ -1,0 +1,4508 @@
+{
+  "personas": [
+    {
+      "name": "all_rounder_high",
+      "description": "Strong across all four rounds.",
+      "abilities": {
+        "aptitude": 0.95,
+        "coding": 0.95,
+        "technical": 0.95,
+        "hr": 0.95
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 15,
+          "total": 15,
+          "percentage": 100.0
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "all_rounder_low",
+      "description": "Weak across all four rounds.",
+      "abilities": {
+        "aptitude": 0.1,
+        "coding": 0.1,
+        "technical": 0.1,
+        "hr": 0.1
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 1,
+          "total": 15,
+          "percentage": 6.67
+        },
+        "coding": {
+          "score": 0,
+          "total": 2,
+          "percentage": 0.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "taking_initiative",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "balanced_medium",
+      "description": "Consistently average across all rounds.",
+      "abilities": {
+        "aptitude": 0.55,
+        "coding": 0.55,
+        "technical": 0.55,
+        "hr": 0.55
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 10,
+          "total": 15,
+          "percentage": 66.67
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "aptitude_specialist",
+      "description": "Excels at aptitude only; weak elsewhere.",
+      "abilities": {
+        "aptitude": 0.9,
+        "coding": 0.2,
+        "technical": 0.2,
+        "hr": 0.2
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 15,
+          "total": 15,
+          "percentage": 100.0
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "number_series",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "coding_specialist",
+      "description": "Excels at coding only; weak elsewhere.",
+      "abilities": {
+        "aptitude": 0.2,
+        "coding": 0.9,
+        "technical": 0.2,
+        "hr": 0.2
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 6,
+          "total": 15,
+          "percentage": 40.0
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "technical_specialist",
+      "description": "Excels at technical only; weak elsewhere.",
+      "abilities": {
+        "aptitude": 0.2,
+        "coding": 0.2,
+        "technical": 0.9,
+        "hr": 0.2
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 2,
+          "total": 15,
+          "percentage": 13.33
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "hr_specialist",
+      "description": "Excels at HR/behavioral only; weak elsewhere.",
+      "abilities": {
+        "aptitude": 0.2,
+        "coding": 0.2,
+        "technical": 0.2,
+        "hr": 0.9
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 5,
+          "total": 15,
+          "percentage": 33.33
+        },
+        "coding": {
+          "score": 0,
+          "total": 2,
+          "percentage": 0.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "coder_not_communicator",
+      "description": "Strong technical/coding, weak HR/soft-skills.",
+      "abilities": {
+        "aptitude": 0.7,
+        "coding": 0.9,
+        "technical": 0.8,
+        "hr": 0.15
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 9,
+          "total": 15,
+          "percentage": 60.0
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "number_series",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "communicator_not_coder",
+      "description": "Strong HR/aptitude, weak coding/technical.",
+      "abilities": {
+        "aptitude": 0.75,
+        "coding": 0.15,
+        "technical": 0.25,
+        "hr": 0.9
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 10,
+          "total": 15,
+          "percentage": 66.67
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "crammer",
+      "description": "Strong rote aptitude, weak applied coding/technical.",
+      "abilities": {
+        "aptitude": 0.85,
+        "coding": 0.3,
+        "technical": 0.35,
+        "hr": 0.5
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 11,
+          "total": 15,
+          "percentage": 73.33
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "number_series",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "late_bloomer",
+      "description": "Weak aptitude, strong coding/technical/HR.",
+      "abilities": {
+        "aptitude": 0.25,
+        "coding": 0.8,
+        "technical": 0.8,
+        "hr": 0.7
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 2,
+          "total": 15,
+          "percentage": 13.33
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "steady_improver",
+      "description": "Moderate-to-good across the board.",
+      "abilities": {
+        "aptitude": 0.5,
+        "coding": 0.6,
+        "technical": 0.65,
+        "hr": 0.7
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 7,
+          "total": 15,
+          "percentage": 46.67
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "front_loaded",
+      "description": "Strong aptitude/coding, fades on technical/HR.",
+      "abilities": {
+        "aptitude": 0.85,
+        "coding": 0.7,
+        "technical": 0.4,
+        "hr": 0.2
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 13,
+          "total": 15,
+          "percentage": 86.67
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "consistently_good",
+      "description": "High accuracy across every round.",
+      "abilities": {
+        "aptitude": 0.88,
+        "coding": 0.85,
+        "technical": 0.82,
+        "hr": 0.8
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 13,
+          "total": 15,
+          "percentage": 86.67
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "guesser",
+      "description": "Near-chance performance everywhere.",
+      "abilities": {
+        "aptitude": 0.25,
+        "coding": 0.25,
+        "technical": 0.25,
+        "hr": 0.25
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 4,
+          "total": 15,
+          "percentage": 26.67
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "taking_initiative",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "technical_and_hr_strong",
+      "description": "Strong technical + HR, average aptitude/coding.",
+      "abilities": {
+        "aptitude": 0.55,
+        "coding": 0.55,
+        "technical": 0.85,
+        "hr": 0.85
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 7,
+          "total": 15,
+          "percentage": 46.67
+        },
+        "coding": {
+          "score": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_and_work",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "reverse_string",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "aptitude_and_coding_strong",
+      "description": "Strong aptitude + coding, average technical/HR.",
+      "abilities": {
+        "aptitude": 0.85,
+        "coding": 0.85,
+        "technical": 0.55,
+        "hr": 0.55
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 12,
+          "total": 15,
+          "percentage": 80.0
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "sentence_correction",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "moderately_capable",
+      "description": "Ability around 0.65 across all rounds.",
+      "abilities": {
+        "aptitude": 0.65,
+        "coding": 0.65,
+        "technical": 0.65,
+        "hr": 0.65
+      },
+      "target_company": "INFOSYS",
+      "round_scores": {
+        "aptitude": {
+          "score": 10,
+          "total": 15,
+          "percentage": 66.67
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "number_series",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "coding_decoding",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "sorting_and_searching",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "encapsulation_and_abstraction",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "taking_initiative",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "team_conflict",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "name": "moderately_weak",
+      "description": "Ability around 0.45 across all rounds.",
+      "abilities": {
+        "aptitude": 0.45,
+        "coding": 0.45,
+        "technical": 0.45,
+        "hr": 0.45
+      },
+      "target_company": "WIPRO",
+      "round_scores": {
+        "aptitude": {
+          "score": 6,
+          "total": 15,
+          "percentage": 40.0
+        },
+        "coding": {
+          "score": 0,
+          "total": 2,
+          "percentage": 0.0
+        },
+        "technical": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        },
+        "hr": {
+          "score": 0,
+          "total": 5,
+          "percentage": 0.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "simple_and_compound_interest",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "permutations_and_combinations",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "puzzles",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "number_series",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "statement_and_conclusion",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "fill_in_the_blanks",
+          "difficulty": 1,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "probability",
+          "difficulty": 2,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "time_speed_and_distance",
+          "difficulty": 5,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "direction_sense",
+          "difficulty": 4,
+          "is_correct": false
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "two_sum",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "arrays_and_strings",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "normalization",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "networking_basics",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "strengths_and_weaknesses",
+          "difficulty": 3,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 2,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "why_this_company",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 1,
+          "is_correct": false
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "handling_pressure",
+          "difficulty": 1,
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "name": "exceptional",
+      "description": "Near-perfect across every round.",
+      "abilities": {
+        "aptitude": 0.99,
+        "coding": 0.99,
+        "technical": 0.99,
+        "hr": 0.99
+      },
+      "target_company": "TCS_NQT",
+      "round_scores": {
+        "aptitude": {
+          "score": 15,
+          "total": 15,
+          "percentage": 100.0
+        },
+        "coding": {
+          "score": 2,
+          "total": 2,
+          "percentage": 100.0
+        },
+        "technical": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "hr": {
+          "score": 5,
+          "total": 5,
+          "percentage": 100.0
+        }
+      },
+      "questions": [
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "percentages",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "syllogism",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "error_spotting",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "data_sufficiency",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "synonyms_antonyms",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "ratio_and_proportion",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "blood_relations",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "para_jumbles",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "profit_and_loss",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "seating_arrangement",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "verbal_ability",
+          "pattern": "reading_comprehension",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "averages",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "logical_reasoning",
+          "pattern": "series_completion",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "aptitude",
+          "topic": "quantitative",
+          "pattern": "mixtures_and_alligation",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "arrays",
+          "pattern": "max_subarray",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "coding",
+          "topic": "strings",
+          "pattern": "valid_palindrome",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "data_structures",
+          "pattern": "stacks_and_queues",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "algorithms",
+          "pattern": "recursion",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "oop",
+          "pattern": "inheritance_and_polymorphism",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "dbms",
+          "pattern": "sql_queries",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "technical",
+          "topic": "os_and_networks",
+          "pattern": "processes_and_threads",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "self_introduction",
+          "pattern": "tell_me_about_yourself",
+          "difficulty": 3,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "teamwork",
+          "pattern": "collaboration_example",
+          "difficulty": 4,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "leadership_and_ownership",
+          "pattern": "handling_failure",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "career_motivation",
+          "pattern": "career_goals",
+          "difficulty": 5,
+          "is_correct": true
+        },
+        {
+          "round": "hr",
+          "topic": "pressure_and_adaptability",
+          "pattern": "adapting_to_change",
+          "difficulty": 5,
+          "is_correct": true
+        }
+      ]
+    }
+  ],
+  "variance": {
+    "technical": {
+      "scores": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean": 100.0,
+      "variance": 0.0
+    },
+    "hr": {
+      "scores": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean": 100.0,
+      "variance": 0.0
+    }
+  }
+}

@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import AptitudeResult from './AptitudeResult'
 import AptitudeRound from './AptitudeRound'
+import CodingResult from './CodingResult'
+import CodingRound from './CodingRound'
 import CompanySelect from './CompanySelect'
+import FinalEvaluation from './FinalEvaluation'
+import HRResult from './HRResult'
+import HRRound from './HRRound'
+import TechnicalResult from './TechnicalResult'
+import TechnicalRound from './TechnicalRound'
 import { createSession, getSession } from './api/aptitude'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
@@ -49,8 +56,16 @@ function App() {
         if (cancelled) return
         if (session.current_stage === 'aptitude') {
           setView({ status: 'aptitude', sessionId: session.id })
+        } else if (session.current_stage === 'coding') {
+          setView({ status: 'coding', sessionId: session.id })
+        } else if (session.current_stage === 'technical') {
+          setView({ status: 'technical', sessionId: session.id })
+        } else if (session.current_stage === 'hr') {
+          setView({ status: 'hr', sessionId: session.id })
         } else {
-          setView({ status: 'result', sessionId: session.id })
+          // completed: all four rounds are done, so the final evaluation
+          // is the resume landing spot.
+          setView({ status: 'final-evaluation', sessionId: session.id })
         }
       })
       .catch(() => {
@@ -105,9 +120,35 @@ function App() {
       {view.status === 'aptitude' && (
         <AptitudeRound
           sessionId={view.sessionId}
-          onCompleted={() => setView({ status: 'result', sessionId: view.sessionId })}
+          onCompleted={() => setView({ status: 'coding', sessionId: view.sessionId })}
         />
       )}
+      {view.status === 'coding' && (
+        <CodingRound
+          sessionId={view.sessionId}
+          onCompleted={() => setView({ status: 'technical', sessionId: view.sessionId })}
+        />
+      )}
+      {view.status === 'technical' && (
+        <TechnicalRound
+          sessionId={view.sessionId}
+          onCompleted={() => setView({ status: 'hr', sessionId: view.sessionId })}
+        />
+      )}
+      {view.status === 'hr' && (
+        <HRRound
+          sessionId={view.sessionId}
+          onCompleted={() => setView({ status: 'final-evaluation', sessionId: view.sessionId })}
+        />
+      )}
+      {view.status === 'final-evaluation' && (
+        <FinalEvaluation sessionId={view.sessionId} onRestart={handleRestart} />
+      )}
+      {view.status === 'hr-result' && <HRResult sessionId={view.sessionId} onRestart={handleRestart} />}
+      {view.status === 'technical-result' && (
+        <TechnicalResult sessionId={view.sessionId} onRestart={handleRestart} />
+      )}
+      {view.status === 'coding-result' && <CodingResult sessionId={view.sessionId} onRestart={handleRestart} />}
       {view.status === 'result' && <AptitudeResult sessionId={view.sessionId} onRestart={handleRestart} />}
     </main>
   )

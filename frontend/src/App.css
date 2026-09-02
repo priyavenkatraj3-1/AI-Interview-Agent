@@ -170,3 +170,134 @@
   padding-left: 20px;
   text-transform: capitalize;
 }
+
+/* --- Coding round (Day 3) --- */
+
+.coding-card {
+  gap: 16px;
+}
+
+.coding-constraints {
+  font-size: 14px;
+}
+
+.coding-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.code-block {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--code-bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+}
+
+.coding-editor-label {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.code-editor {
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  resize: vertical;
+  white-space: pre;
+}
+
+.code-editor:disabled {
+  opacity: 0.7;
+}
+
+.coding-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.secondary-button {
+  font: inherit;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.test-case-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.test-case-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.test-case {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.test-case.passed {
+  border-color: #1a7f37;
+}
+
+.test-case.failed {
+  border-color: #cf222e;
+}
+
+.test-case-io {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.test-case-error {
+  font-size: 13px;
+}
+
+.coding-next-note {
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* --- Technical round (Day 4) --- */
+
+.technical-answer {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* --- Final evaluation (Day 3 continued) --- */
+
+/* Like .topic-breakdown but without its text-transform: capitalize —
+   final-evaluation strengths/weaknesses/round-scores are full sentences,
+   not single topic names. */
+.plain-list {
+  margin: 0;
+  padding-left: 20px;
+}

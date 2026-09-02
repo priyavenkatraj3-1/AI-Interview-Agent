@@ -29,7 +29,7 @@ import pytest  # noqa: E402
 
 from app.core.database import Base, engine, SessionLocal  # noqa: E402
 from app.main import app  # noqa: E402
-from app.services import aptitude_service  # noqa: E402
+from app.services import aptitude_service, coding_service, hr_service, technical_service  # noqa: E402
 from agents.base import AgentResult, AgentUsage  # noqa: E402
 
 from fastapi.testclient import TestClient  # noqa: E402
@@ -84,6 +84,133 @@ class FakeQuestionGenerator:
 def fake_question_generator(monkeypatch):
     fake = FakeQuestionGenerator()
     monkeypatch.setattr(aptitude_service, "_question_generator", fake)
+    return fake
+
+
+class FakeCodeProblemGenerator:
+    """Deterministic stand-in for the coding round's problem generator
+    (real or MockCodeProblemGeneratorAgent): no Claude call, one simple
+    'add two numbers' problem per call, with a known-correct reference
+    solution (see CORRECT_CODE in test_coding_api.py) so tests can control
+    pass/fail by choosing what code to submit."""
+
+    name = "code_problem_generator"
+
+    def __init__(self):
+        self.calls = 0
+
+    async def run(self, **kwargs):
+        self.calls += 1
+        topic = kwargs["topic"]
+        pattern = kwargs["pattern"]
+        difficulty = kwargs["difficulty"]
+        data = {
+            "title": f"Fake Add Problem #{self.calls}",
+            "description": "Return the sum of two integers a and b.",
+            "constraints": "-1000 <= a, b <= 1000",
+            "function_name": "add_two",
+            "starter_code": "def add_two(a, b):\n    pass\n",
+            "examples": [{"input": "a = 2, b = 3", "output": "5", "explanation": None}],
+            "public_tests": [{"args": [2, 3], "expected": 5}],
+            "hidden_tests": [
+                {"args": [2, 3], "expected": 5},
+                {"args": [-1, 1], "expected": 0},
+                {"args": [10, 20], "expected": 30},
+            ],
+            "topic": topic,
+            "pattern": pattern,
+            "difficulty": difficulty,
+        }
+        usage = AgentUsage(model="fake-cheap-model", input_tokens=60, output_tokens=30, cost_usd=0.00008)
+        return AgentResult(data=data, usage=usage)
+
+
+@pytest.fixture(autouse=True)
+def fake_code_problem_generator(monkeypatch):
+    fake = FakeCodeProblemGenerator()
+    monkeypatch.setattr(coding_service, "_code_problem_generator", fake)
+    return fake
+
+
+class FakeTechnicalInterviewer:
+    """Deterministic stand-in for the technical round's question generator
+    (real or MockTechnicalInterviewerAgent): no Claude call, one fixed
+    stack/queue question per call with known rubric_keywords, so tests can
+    control correctness deterministically via the real
+    MockTechnicalKeyValidatorAgent's keyword-overlap heuristic (phase 2 of
+    grading, selected automatically since MOCK_MODE defaults to true) — no
+    need to fake the grader too, mirroring how the coding round's tests
+    exercise the real local executor rather than faking it. See
+    agents/technical_interviewer/grader.py and
+    tests/test_grader_independence.py for the two-phase (independent
+    draft, then key-based validation) grading pipeline."""
+
+    name = "technical_interviewer"
+
+    def __init__(self):
+        self.calls = 0
+
+    async def run(self, **kwargs):
+        self.calls += 1
+        topic = kwargs["topic"]
+        pattern = kwargs["pattern"]
+        difficulty = kwargs["difficulty"]
+        data = {
+            "question": f"Fake Technical Question #{self.calls}: explain stacks and queues.",
+            "model_answer": "A stack is LIFO; a queue is FIFO.",
+            "rubric_keywords": ["stack", "queue", "lifo", "fifo"],
+            "topic": topic,
+            "pattern": pattern,
+            "difficulty": difficulty,
+        }
+        usage = AgentUsage(model="fake-strong-model", input_tokens=80, output_tokens=40, cost_usd=0.0002)
+        return AgentResult(data=data, usage=usage)
+
+
+@pytest.fixture(autouse=True)
+def fake_technical_interviewer(monkeypatch):
+    fake = FakeTechnicalInterviewer()
+    monkeypatch.setattr(technical_service, "_technical_interviewer", fake)
+    return fake
+
+
+class FakeHRInterviewer:
+    """Deterministic stand-in for the HR round's question generator (real
+    or MockHRInterviewerAgent): no Claude call, one fixed teamwork question
+    per call with known rubric_keywords, so tests can control correctness
+    deterministically via the real MockHRKeyValidatorAgent's keyword-overlap
+    heuristic (phase 2 of grading, selected automatically since MOCK_MODE
+    defaults to true) — no need to fake the grader too, mirroring the
+    technical round's tests. See agents/hr_interviewer/grader.py and
+    tests/test_grader_independence.py for the two-phase (independent
+    draft, then key-based validation) grading pipeline."""
+
+    name = "hr_interviewer"
+
+    def __init__(self):
+        self.calls = 0
+
+    async def run(self, **kwargs):
+        self.calls += 1
+        topic = kwargs["topic"]
+        pattern = kwargs["pattern"]
+        difficulty = kwargs["difficulty"]
+        data = {
+            "question": f"Fake HR Question #{self.calls}: describe a time you resolved a team conflict.",
+            "model_answer": "A strong answer describes the conflict, how it was communicated and resolved, and the team outcome.",
+            "rubric_keywords": ["conflict", "communicate", "compromise", "resolve"],
+            "topic": topic,
+            "pattern": pattern,
+            "difficulty": difficulty,
+        }
+        usage = AgentUsage(model="fake-strong-model", input_tokens=80, output_tokens=40, cost_usd=0.0002)
+        return AgentResult(data=data, usage=usage)
+
+
+@pytest.fixture(autouse=True)
+def fake_hr_interviewer(monkeypatch):
+    fake = FakeHRInterviewer()
+    monkeypatch.setattr(hr_service, "_hr_interviewer", fake)
     return fake
 
 
