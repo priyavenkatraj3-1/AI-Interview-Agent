@@ -2,10 +2,21 @@
 Unit tests for QuestionGeneratorAgent: structured output shape and
 duplicate-prevention retry behavior, against a fake Anthropic client (no
 network call — the real anthropic.messages.create() is never invoked).
+
+Also covers MockQuestionGeneratorAgent and the MOCK_MODE-driven
+build_question_generator() factory (see that module's docstring) — no
+Anthropic client involved in either at all, mirroring the equivalent tests
+for the coding/technical/HR generator agents.
 """
 import pytest
 
-from agents.question_generator.question_generator import QuestionGenerationError, QuestionGeneratorAgent
+from agents.question_generator import question_generator as qg_module
+from agents.question_generator.question_generator import (
+    MockQuestionGeneratorAgent,
+    QuestionGenerationError,
+    QuestionGeneratorAgent,
+    build_question_generator,
+)
 
 
 class FakeToolUseBlock:
@@ -188,3 +199,91 @@ async def test_raises_instead_of_returning_malformed_data_after_max_attempts():
         )
 
     assert len(client.messages.calls) == 3
+
+
+# --- Mock (offline, no Anthropic client) generator ---
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_returns_a_valid_self_consistent_mcq():
+    agent = MockQuestionGeneratorAgent()
+    result = await agent.run(
+        target_company="TCS_NQT",
+        topic="quantitative",
+        pattern="percentages",
+        difficulty=3,
+        previous_questions=[],
+    )
+
+    assert result.data["question"]
+    assert len(result.data["options"]) == 4
+    assert 0 <= result.data["correct_option"] <= 3
+    assert result.data["explanation"]
+    assert result.data["topic"] == "quantitative"
+    assert result.data["pattern"] == "percentages"
+    assert result.data["difficulty"] == 3
+    assert result.usage is None  # no Claude call, so no cost/usage to log
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_follows_topic_pattern_difficulty_inputs():
+    agent = MockQuestionGeneratorAgent()
+    result = await agent.run(
+        target_company="TCS_NQT",
+        topic="logical_reasoning",
+        pattern="syllogism",
+        difficulty=5,
+        previous_questions=[],
+    )
+
+    assert result.data["topic"] == "logical_reasoning"
+    assert result.data["pattern"] == "syllogism"
+    assert result.data["difficulty"] == 5
+    # The question text itself reflects what it was asked for, not a fixed
+    # canned string independent of the inputs.
+    assert "logical reasoning" in result.data["question"].lower()
+    assert "syllogism" in result.data["question"].lower()
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_correct_option_is_actually_correct():
+    agent = MockQuestionGeneratorAgent()
+    result = await agent.run(
+        target_company="TCS_NQT", topic="quantitative", pattern="percentages", difficulty=2, previous_questions=[]
+    )
+
+    # Self-consistency: the labeled correct_option must actually match the
+    # explanation's arithmetic, not just be a well-formed index.
+    correct_value = result.data["options"][result.data["correct_option"]]
+    assert correct_value in result.data["explanation"]
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_varies_with_previous_questions_length():
+    agent = MockQuestionGeneratorAgent()
+    first = await agent.run(
+        target_company="TCS_NQT", topic="quantitative", pattern="percentages", difficulty=3, previous_questions=[]
+    )
+    second = await agent.run(
+        target_company="TCS_NQT",
+        topic="quantitative",
+        pattern="percentages",
+        difficulty=3,
+        previous_questions=[first.data["question"]],
+    )
+    assert first.data["question"] != second.data["question"]
+
+
+# --- MOCK_MODE-driven factory ---
+
+
+def test_factory_returns_mock_agent_when_mock_mode_enabled(monkeypatch):
+    monkeypatch.setattr(qg_module, "MOCK_MODE", True)
+    agent = build_question_generator()
+    assert isinstance(agent, MockQuestionGeneratorAgent)
+
+
+def test_factory_returns_real_agent_when_mock_mode_disabled(monkeypatch):
+    monkeypatch.setattr(qg_module, "MOCK_MODE", False)
+    agent = build_question_generator()
+    assert isinstance(agent, QuestionGeneratorAgent)

@@ -32,6 +32,11 @@ from agents.technical_interviewer.technical_interviewer import build_technical_i
 from app.models.session import CostLog, InterviewSession, StageProgress
 
 STAGE = "technical"
+# The coding round's stage name (app.services.coding_service.STAGE), kept
+# as a local literal rather than importing that module -- each stage
+# service stays self-contained per docs/architecture.md; only the shared
+# StageProgress table is touched, read-only, directly.
+CODING_STAGE = "coding"
 
 _technical_interviewer = build_technical_interviewer()
 # Two independent agents, not one: _technical_independent_grader must
@@ -82,7 +87,46 @@ def _log_cost(db: Session, session_id: str, agent_name: str, usage) -> None:
     )
 
 
-async def _generate_question(session_id: str, target_company: str, details: dict, index: int) -> tuple[dict, object]:
+def _get_coding_context(db: Session, session_id: str) -> dict | None:
+    """Best-effort fetch of the candidate's own Stage-2 (coding) submission,
+    so the first technical question can dig into their own code (assignment
+    requirement). Only ever reads title/topic/submitted_code out of
+    StageProgress.details["asked_problems"] -- those entries never carry
+    the raw hidden test args/expected values in the first place (see
+    app.services.coding_service.submit_code), so there is nothing to
+    redact here; hidden test cases simply never reach this code path.
+
+    Returns None if the coding stage was never started or has no
+    submissions yet (e.g. a test/flow that starts the technical round
+    directly) -- purely additive, never required for the technical round
+    to function."""
+    coding_progress = (
+        db.query(StageProgress)
+        .filter(StageProgress.session_id == session_id, StageProgress.stage == CODING_STAGE)
+        .one_or_none()
+    )
+    if coding_progress is None:
+        return None
+    asked_problems = coding_progress.details.get("asked_problems") or []
+    if not asked_problems:
+        return None
+    problem = asked_problems[0]
+    return {
+        "title": problem["title"],
+        "topic": problem["topic"],
+        "submitted_code": problem["submitted_code"],
+    }
+
+
+async def _generate_question(
+    session_id: str,
+    target_company: str,
+    details: dict,
+    index: int,
+    *,
+    previous_turn: dict | None = None,
+    coding_context: dict | None = None,
+) -> tuple[dict, object]:
     topic = details["topic_sequence"][index]
     used_patterns = {q["pattern"] for q in details["asked_questions"] if q["topic"] == topic}
     pattern = pick_pattern(topic, used_patterns, session_rng(session_id, index))
@@ -95,11 +139,23 @@ async def _generate_question(session_id: str, target_company: str, details: dict
             pattern=pattern,
             difficulty=details["difficulty"],
             previous_questions=previous_questions,
+            previous_turn=previous_turn,
+            coding_context=coding_context,
         )
     except Exception as exc:  # anthropic API errors, malformed tool output, missing mock fixture, etc.
         raise TechnicalServiceError(f"Technical question generation failed: {exc}", status_code=502) from exc
 
-    return result.data, result.usage
+    data = result.data
+    if previous_turn is not None and data.get("is_follow_up"):
+        # Stay on the same subject as the answer being probed rather than
+        # the freshly scheduled topic/pattern -- this turn still counts
+        # against TOTAL_QUESTIONS, it just doesn't advance to a new topic.
+        data["topic"] = previous_turn["topic"]
+        data["pattern"] = previous_turn["pattern"]
+    else:
+        data["is_follow_up"] = False  # normalize, in case the agent misreported it while ineligible
+
+    return data, result.usage
 
 
 def _public_question(question: dict) -> dict:
@@ -159,7 +215,10 @@ async def start_technical(db: Session, session_id: str) -> dict:
         "completed_at": None,
     }
 
-    question_data, usage = await _generate_question(session_id, session.target_company, details, 0)
+    coding_context = _get_coding_context(db, session_id)
+    question_data, usage = await _generate_question(
+        session_id, session.target_company, details, 0, coding_context=coding_context
+    )
     question_data["presented_at"] = datetime.now(timezone.utc).isoformat()
     details["current_question"] = question_data
 
@@ -250,6 +309,7 @@ async def submit_answer(db: Session, session_id: str, candidate_answer: str) -> 
             "presented_at": current_question["presented_at"],
             "answered_at": answered_at.isoformat(),
             "response_time_seconds": response_time_seconds,
+            "is_follow_up": current_question.get("is_follow_up", False),
         }
     )
     if is_correct:
@@ -270,8 +330,25 @@ async def submit_answer(db: Session, session_id: str, candidate_answer: str) -> 
         session.current_stage = get_next_stage(STAGE)
         db.add(session)
     else:
+        # The interviewer's own previously-authored question/model_answer/
+        # rubric_keywords for the just-answered question, plus the
+        # candidate's own answer to it -- everything it needs to judge
+        # whether that answer warrants a Socratic follow-up. No answer-key
+        # data crosses into the independent grader above; this is a
+        # separate agent seeing only what it itself already produced.
+        # probe_eligible=False when the just-answered question was itself
+        # a follow-up, so probing never chains more than one deep.
+        previous_turn = {
+            "question": current_question["question"],
+            "candidate_answer": candidate_answer,
+            "model_answer": current_question["model_answer"],
+            "rubric_keywords": current_question["rubric_keywords"],
+            "topic": current_question["topic"],
+            "pattern": current_question["pattern"],
+            "probe_eligible": not current_question.get("is_follow_up", False),
+        }
         question_data, usage = await _generate_question(
-            session_id, session.target_company, details, details["current_index"]
+            session_id, session.target_company, details, details["current_index"], previous_turn=previous_turn
         )
         _log_cost(db, session_id, _technical_interviewer.name, usage)
         question_data["presented_at"] = datetime.now(timezone.utc).isoformat()

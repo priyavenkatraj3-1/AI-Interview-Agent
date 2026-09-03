@@ -60,6 +60,11 @@ class AnswerSubmitRequest(BaseModel):
 
 class AnswerSubmitResponse(BaseModel):
     is_correct: bool
+    # True when the backend-enforced per-question time limit
+    # (agents.question_generator.taxonomy.MAX_TIME_PER_QUESTION_SECONDS)
+    # was exceeded before this answer was submitted -- is_correct is then
+    # always False regardless of the submitted selected_option.
+    timed_out: bool
     correct_option: int
     explanation: str
     score: int
@@ -80,6 +85,7 @@ class AptitudeHistoryItem(BaseModel):
     correct_option: int
     selected_option: int
     is_correct: bool
+    timed_out: bool
     difficulty: int
     presented_at: datetime
     answered_at: datetime
@@ -150,6 +156,11 @@ class CodeSubmitRequest(BaseModel):
 
 
 class CodeTestCaseResult(BaseModel):
+    """input/expected_output carry the real sample-test values for
+    CodeRunResponse (public tests), but are replaced with a "[hidden]"
+    placeholder in CodeSubmitResponse (hidden tests) -- see
+    app.services.coding_service._public_results' reveal_io flag."""
+
     input: str
     expected_output: str
     actual_output: str | None
@@ -168,11 +179,31 @@ class CodeRunResponse(BaseModel):
     total_count: int
 
 
+class CodeQualityDimensions(BaseModel):
+    """Structured per-dimension code-quality breakdown (0-100 each) from
+    agents.code_quality.code_quality_reviewer -- entirely independent of
+    hidden-test functional correctness."""
+
+    readability: int
+    naming_clarity: int
+    structure_organization: int
+    function_usage: int
+    duplication: int
+    best_practices: int
+    maintainability: int
+
+
 class CodeSubmitResponse(BaseModel):
     is_correct: bool
     passed_count: int
     total_count: int
     results: list[CodeTestCaseResult]
+    # Code-quality review (agents.code_quality.code_quality_reviewer),
+    # produced after and independent of the functional grading above --
+    # never influences is_correct/passed_count/total_count.
+    quality_score: int
+    quality_feedback: str
+    quality_dimensions: CodeQualityDimensions
     score: int
     difficulty: int
     current_index: int
@@ -192,6 +223,9 @@ class CodingHistoryItem(BaseModel):
     passed_count: int
     total_count: int
     is_correct: bool
+    quality_score: int
+    quality_feedback: str
+    quality_dimensions: CodeQualityDimensions
     presented_at: datetime
     submitted_at: datetime
     response_time_seconds: float | None
@@ -210,6 +244,9 @@ class CodingResultResponse(BaseModel):
     completed_at: datetime | None
     history: list[CodingHistoryItem]
     topic_breakdown: dict[str, dict[str, int]]
+    # Averaged across this round's submissions' independent code-quality
+    # reviews; None only if the round has no submissions yet.
+    average_quality_score: float | None
 
 
 # --- Technical round (Day 4) ---
@@ -373,6 +410,16 @@ class RoundScoreSummary(BaseModel):
     percentage: float
 
 
+class CodingRoundSummary(RoundScoreSummary):
+    """Coding round summary, extended with its code-quality result (see
+    app.services.coding_service.get_result's average_quality_score) --
+    the other three rounds have no quality dimension, so they keep the
+    plain RoundScoreSummary shape unchanged."""
+
+    average_quality_score: float | None = None
+    quality_feedback_summary: str | None = None
+
+
 class RemediationDayPlan(BaseModel):
     day: int
     focus: str
@@ -384,7 +431,7 @@ class FinalEvaluationResponse(BaseModel):
     target_company: str
     overall_score: float
     aptitude: RoundScoreSummary
-    coding: RoundScoreSummary
+    coding: CodingRoundSummary
     technical: RoundScoreSummary
     hr: RoundScoreSummary
     strengths: list[str]

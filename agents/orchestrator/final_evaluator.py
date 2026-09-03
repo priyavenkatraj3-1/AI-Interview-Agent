@@ -224,6 +224,18 @@ def _analyze_rounds(rounds: dict) -> tuple[list[dict], list[dict]]:
             elif topic_pct <= WEAKNESS_THRESHOLD:
                 weak.append({"label": label, "topic": topic_label, "pct": topic_pct})
 
+        # Coding-round-only: its code-quality result (separate from the
+        # functional percentage handled above) gets the same strength/
+        # weakness treatment, so the mock evaluator's strengths/weaknesses/
+        # remediation-plan/hiring-verdict actually reflect it too, not just
+        # the real Claude-backed prompt (see _build_prompt below).
+        quality_score = summary.get("average_quality_score")
+        if quality_score is not None:
+            if quality_score >= STRENGTH_THRESHOLD:
+                strong.append({"label": label, "topic": "code quality", "pct": quality_score})
+            elif quality_score <= WEAKNESS_THRESHOLD:
+                weak.append({"label": label, "topic": "code quality", "pct": quality_score})
+
     return weak, strong
 
 
@@ -398,6 +410,13 @@ class FinalEvaluatorAgent(BaseAgent):
                 f"- {label}: {summary['score']}/{summary['total']} ({summary['percentage']}%). "
                 f"Topic breakdown: {summary['topic_breakdown']}"
             )
+            quality_score = summary.get("average_quality_score")
+            if quality_score is not None:
+                # Coding-round-only: its code-quality result, separate from
+                # the functional score/percentage above.
+                lines.append(
+                    f"  Code quality (independent of functional correctness): {quality_score}/100."
+                )
         lines.append(
             "Based on this performance, identify specific strengths and weaknesses (grounded in the "
             "data above, not generic), and give an overall hiring recommendation "

@@ -126,6 +126,7 @@ VALID_QUESTION = {
     "question": "What is the difference between a stack and a queue?",
     "model_answer": "A stack is LIFO; a queue is FIFO.",
     "rubric_keywords": ["stack", "queue", "lifo", "fifo"],
+    "is_follow_up": False,
 }
 
 
@@ -178,6 +179,7 @@ async def test_duplicate_question_triggers_retry():
         "question": "What is the time complexity of binary search, and what precondition does it require?",
         "model_answer": "O(log n) since the search space halves each step; the array must be sorted.",
         "rubric_keywords": ["binary search", "o(log n)", "sorted"],
+        "is_follow_up": False,
     }
     client = FakeClient([FakeResponse(duplicate), FakeResponse(fresh)])
     agent = TechnicalInterviewerAgent(client=client)

@@ -80,7 +80,9 @@ def _log_cost(db: Session, session_id: str, agent_name: str, usage) -> None:
     )
 
 
-def _round_summary(label: str, db: Session, session_id: str, get_result_fn, total_key: str) -> dict:
+def _round_summary(
+    label: str, db: Session, session_id: str, get_result_fn, total_key: str, *, extra_keys: tuple[str, ...] = ()
+) -> dict:
     try:
         result = get_result_fn(db, session_id)
     except _ROUND_RESULT_ERRORS as exc:
@@ -89,12 +91,18 @@ def _round_summary(label: str, db: Session, session_id: str, get_result_fn, tota
             status_code=409,
         ) from exc
 
-    return {
+    summary = {
         "score": result["score"],
         "total": result[total_key],
         "percentage": result["percentage"],
         "topic_breakdown": result["topic_breakdown"],
     }
+    # Round-specific extras (currently only the coding round's
+    # average_quality_score) -- passed straight through from that round's
+    # own get_result(), never affecting the other rounds' plain shape.
+    for key in extra_keys:
+        summary[key] = result.get(key)
+    return summary
 
 
 def _public_evaluation(session: InterviewSession, details: dict) -> dict:
@@ -128,10 +136,23 @@ async def generate_final_evaluation(db: Session, session_id: str) -> dict:
 
     rounds = {
         "aptitude": _round_summary("Aptitude", db, session_id, _get_aptitude_result, "total_questions"),
-        "coding": _round_summary("Coding", db, session_id, _get_coding_result, "total_problems"),
+        "coding": _round_summary(
+            "Coding", db, session_id, _get_coding_result, "total_problems", extra_keys=("average_quality_score",)
+        ),
         "technical": _round_summary("Technical", db, session_id, _get_technical_result, "total_questions"),
         "hr": _round_summary("HR", db, session_id, _get_hr_result, "total_questions"),
     }
+
+    # Human-readable summary of the coding round's code-quality result
+    # (separate from its functional score/percentage above), so both the
+    # Claude-backed and mock final evaluators -- and the public API
+    # response's CodingRoundSummary -- have direct access to it.
+    coding_quality_score = rounds["coding"].get("average_quality_score")
+    if coding_quality_score is not None:
+        rounds["coding"]["quality_feedback_summary"] = (
+            f"Average code-quality score across submissions: {coding_quality_score}/100 "
+            "(readability, naming, structure, duplication, best practices, maintainability)."
+        )
 
     overall_score = round(sum(r["percentage"] for r in rounds.values()) / len(rounds), 2)
 

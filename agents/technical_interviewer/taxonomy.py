@@ -31,6 +31,14 @@ DIFFICULTY_LABELS: dict[int, str] = {
 # scoring/difficulty-progression purposes (see agents/technical_interviewer/grader.py).
 PASS_THRESHOLD = 60
 
+# Offline/mock Socratic-probing heuristic (see MockTechnicalInterviewerAgent
+# in technical_interviewer.py): a previous answer under this many words is
+# treated as too short/vague to have adequately explained itself, and may
+# trigger one same-topic "why?" follow-up question instead of moving on.
+# Not used by the real Claude-backed interviewer, which judges weakness
+# itself from the actual answer content rather than a word count.
+WEAK_ANSWER_WORD_THRESHOLD = 6
+
 SUPPORTED_COMPANIES = ["TCS_NQT", "INFOSYS", "WIPRO"]
 
 # topic -> patterns/sub-types within it. Mirrors the broad shape of a

@@ -6,8 +6,32 @@ hardcoded question bank, no scraping" approach via a forced Claude tool
 call — the only difference is the question is open-ended (graded by
 agents/technical_interviewer/grader.py) rather than multiple-choice.
 
+Two additive capabilities on top of that base flow (both optional kwargs on
+run(), both purely per-call dynamic prompt content — never folded into
+EMIT_QUESTION_TOOL's cache_control-marked static block, so the one
+genuinely cacheable block stays byte-identical across calls):
+
+- Socratic follow-up (`previous_turn`): the immediately previous question,
+  the candidate's own answer to it, and the model_answer/rubric_keywords
+  this agent itself authored for that question (its own previously-emitted
+  data, not a leak from the independent grader — see
+  agents/technical_interviewer/grader.py's IndependentGradingInput, which
+  still never sees any of this). The agent judges whether that answer was
+  weak/incomplete/vague and, if so and only if `probe_eligible` (no two
+  follow-ups in a row), asks ONE same-topic "why?"/clarify/justify
+  follow-up instead of moving to a new topic. Reported back via
+  `is_follow_up` in the returned data; app.services.technical_service
+  decides topic/pattern bookkeeping from that flag, and this call still
+  counts toward the fixed TOTAL_QUESTIONS turn limit either way.
+- Stage-2 code probing (`coding_context`): the candidate's own submitted
+  code from the coding round (title + submitted_code only — never hidden
+  test cases/expected outputs, which app.services.technical_service never
+  fetches in the first place; see that module's _get_coding_context).
+  When present, the question must be about this specific submission.
+
 Since Anthropic API credits are currently unavailable, this module also
 defines MockTechnicalInterviewerAgent: a small, hand-verified fixture bank
+(plus a deterministic word-count heuristic for the two capabilities above)
 used instead whenever MOCK_MODE is enabled (the default — see
 agents/config.py). Both classes satisfy the same BaseAgent contract, so
 app.services.technical_service holds whichever build_technical_interviewer()
@@ -24,7 +48,7 @@ from agents.config import ANTHROPIC_API_KEY, MOCK_MODE
 from agents.model_router import resolve_model
 from agents.pricing import estimate_cost_usd
 
-from .taxonomy import DIFFICULTY_LABELS
+from .taxonomy import DIFFICULTY_LABELS, WEAK_ANSWER_WORD_THRESHOLD
 
 EMIT_QUESTION_TOOL_NAME = "emit_technical_question"
 
@@ -52,8 +76,16 @@ EMIT_QUESTION_TOOL = {
                 "maxItems": 8,
                 "description": "Key concepts/terms a strong answer should mention, used to grade the candidate's answer.",
             },
+            "is_follow_up": {
+                "type": "boolean",
+                "description": (
+                    "true only if this question is a Socratic follow-up probing the immediately previous "
+                    "answer (same topic, asks the candidate to explain/justify/clarify — e.g. 'why?') "
+                    "instead of moving to a new topic; false for a normal new-topic question."
+                ),
+            },
         },
-        "required": ["question", "model_answer", "rubric_keywords"],
+        "required": ["question", "model_answer", "rubric_keywords", "is_follow_up"],
     },
     # Byte-identical on every call to this agent, regardless of
     # topic/pattern/difficulty — the one genuinely cacheable static block.
@@ -93,6 +125,8 @@ def _is_malformed(candidate: dict) -> bool:
         return True
     if not all(isinstance(k, str) and k.strip() for k in keywords):
         return True
+    if not isinstance(candidate.get("is_follow_up"), bool):
+        return True
     return False
 
 
@@ -120,6 +154,9 @@ class TechnicalInterviewerAgent(BaseAgent):
         pattern: str,
         difficulty: int,
         previous_questions: list[str],
+        *,
+        previous_turn: dict | None = None,
+        coding_context: dict | None = None,
     ) -> str:
         label = DIFFICULTY_LABELS[difficulty]
         avoid = ""
@@ -129,16 +166,60 @@ class TechnicalInterviewerAgent(BaseAgent):
                 "\nDo not repeat, rephrase, or closely resemble any of these "
                 f"questions already asked in this session:\n{joined}\n"
             )
+
+        # Dynamic, per-call content only -- never folded into
+        # EMIT_QUESTION_TOOL's cache_control-marked static block above.
+        coding_block = ""
+        if coding_context is not None:
+            coding_block = (
+                "\nThe candidate previously submitted this Python solution for a coding-round problem "
+                f"titled \"{coding_context['title']}\":\n"
+                f"```python\n{coding_context['submitted_code']}\n```\n"
+                "For THIS question specifically: ignore the topic/pattern below and instead ask an "
+                "open-ended technical question that references this exact submission -- e.g. its time/space "
+                "complexity, an edge case it may not handle, why this particular approach was chosen, or how "
+                "it could be improved. The question must be about this specific code, not a generic question "
+                "about the topic. Set is_follow_up to false for this question.\n"
+            )
+
+        probe_block = ""
+        if previous_turn is not None:
+            if previous_turn["probe_eligible"]:
+                probe_block = (
+                    "\nThe candidate's immediately previous question and answer in this interview were:\n"
+                    f"Previous question: {previous_turn['question']}\n"
+                    f"Previous candidate answer: {previous_turn['candidate_answer']}\n"
+                    f"(For reference) the model answer you wrote for that question: {previous_turn['model_answer']}\n"
+                    "First, judge for yourself whether that answer is weak, incomplete, vague, or fails to "
+                    "justify itself -- not merely whether it is short. If, and only if, it genuinely needs "
+                    "probing, ask ONE Socratic follow-up question that stays on the SAME topic/pattern as the "
+                    "previous question and asks the candidate to explain their reasoning, justify a claim, or "
+                    "clarify what they meant (e.g. 'why...', 'what would happen if...', 'can you walk "
+                    "through...'). Set is_follow_up to true in that case. Do not do this for every answer -- "
+                    "only when it actually warrants it; a clear, complete, correct answer should NOT be "
+                    "followed up. If it does not need probing, ask the next NEW question as instructed below "
+                    "(topic/pattern/difficulty given below) and set is_follow_up to false.\n"
+                )
+            else:
+                probe_block = (
+                    "\nA Socratic follow-up question was already asked after the candidate's previous answer, "
+                    "so do not probe again immediately -- ask the next NEW question as instructed below and "
+                    "set is_follow_up to false.\n"
+                )
+
         return (
             "You are conducting the technical interview round of a placement test in the style of "
             f"{target_company.replace('_', ' ')}.\n"
             f"Topic: {topic.replace('_', ' ')}. Pattern/sub-type: {pattern.replace('_', ' ')}.\n"
             f"Difficulty: {label} ({difficulty}/5).\n"
+            f"{coding_block}"
+            f"{probe_block}"
             "Requirements:\n"
             "- Ask one open-ended technical question the candidate answers in free text (not multiple choice).\n"
             "- Provide a strong reference answer and 3-8 key concepts/terms a good answer should mention.\n"
             f"{avoid}"
-            f"Call the {EMIT_QUESTION_TOOL_NAME} tool with the result. Do not include any other text."
+            f"Call the {EMIT_QUESTION_TOOL_NAME} tool with the result, including is_follow_up. Do not include "
+            "any other text."
         )
 
     async def run(self, **kwargs) -> AgentResult:
@@ -147,6 +228,8 @@ class TechnicalInterviewerAgent(BaseAgent):
         pattern: str = kwargs["pattern"]
         difficulty: int = kwargs["difficulty"]
         previous_questions: list[str] = kwargs.get("previous_questions", [])
+        previous_turn: dict | None = kwargs.get("previous_turn")
+        coding_context: dict | None = kwargs.get("coding_context")
         max_attempts: int = kwargs.get("max_attempts", DEFAULT_MAX_ATTEMPTS)
         tier: ModelTier = kwargs.get("tier", self.default_tier)
         model = resolve_model(tier)
@@ -156,7 +239,15 @@ class TechnicalInterviewerAgent(BaseAgent):
         malformed = True
 
         for _attempt in range(1, max_attempts + 1):
-            prompt = self._build_prompt(target_company, topic, pattern, difficulty, previous_questions)
+            prompt = self._build_prompt(
+                target_company,
+                topic,
+                pattern,
+                difficulty,
+                previous_questions,
+                previous_turn=previous_turn,
+                coding_context=coding_context,
+            )
             response = self.client.messages.create(
                 model=model,
                 max_tokens=1024,
@@ -292,6 +383,35 @@ _MOCK_FIXTURES: dict[tuple[str, str], dict] = {
 }
 
 
+# Offline fixture for the Stage-2 code-probing question (coding_context is
+# given): a code-review-style question templated with the candidate's own
+# submitted code, so the question text genuinely references their specific
+# submission rather than being generic.
+_CODE_REVIEW_FIXTURE_TEMPLATE = {
+    "question": (
+        'Looking at your own submitted solution for "{title}":\n{code}\n'
+        "What is the time complexity of this solution, and can you identify one edge case it might not "
+        "handle correctly?"
+    ),
+    "model_answer": (
+        "A strong answer states the Big-O time (and ideally space) complexity of the submitted approach, "
+        "and identifies at least one edge case (e.g. empty input, a single element, duplicates, or "
+        "negative values) that the submitted code may not handle correctly."
+    ),
+    "rubric_keywords": ["complexity", "time", "space", "edge case", "big-o"],
+}
+
+
+def _is_weak_answer(answer: str) -> bool:
+    """Deterministic weak-answer heuristic for the offline mock interviewer
+    (see taxonomy.WEAK_ANSWER_WORD_THRESHOLD): an answer under that many
+    words is treated as too short/vague to have adequately explained
+    itself. Mirrors the *spirit* of the real Claude-backed agent's judgment
+    without an API call -- not a claim that word count is a good general
+    proxy for answer quality."""
+    return len(answer.split()) < WEAK_ANSWER_WORD_THRESHOLD
+
+
 class MockTechnicalInterviewerAgent(BaseAgent):
     """Deterministic, fully offline stand-in for TechnicalInterviewerAgent.
 
@@ -299,7 +419,12 @@ class MockTechnicalInterviewerAgent(BaseAgent):
     currently available): serves a hand-verified fixture instead of calling
     Claude. This is a clearly-labeled dev/demo fallback, not the intended
     production path (which stays "no hardcoded question bank" via the real
-    generator above)."""
+    generator above).
+
+    Implements the same two additive capabilities as the real agent
+    (coding_context / previous_turn), via deterministic rules instead of an
+    LLM call, so tests can exercise Socratic follow-up and Stage-2 code
+    probing offline. See _is_weak_answer and _CODE_REVIEW_FIXTURE_TEMPLATE."""
 
     name = "technical_interviewer_mock"
     default_tier = ModelTier.STRONG
@@ -308,14 +433,38 @@ class MockTechnicalInterviewerAgent(BaseAgent):
         topic: str = kwargs["topic"]
         pattern: str = kwargs["pattern"]
         difficulty: int = kwargs["difficulty"]
+        previous_turn: dict | None = kwargs.get("previous_turn")
+        coding_context: dict | None = kwargs.get("coding_context")
 
-        fixture = _MOCK_FIXTURES.get((topic, pattern))
-        if fixture is None:
-            raise TechnicalQuestionGenerationError(
-                f"No mock fixture for topic={topic!r} pattern={pattern!r}"
+        if coding_context is not None:
+            data = copy.deepcopy(_CODE_REVIEW_FIXTURE_TEMPLATE)
+            data["question"] = data["question"].format(
+                title=coding_context["title"], code=coding_context["submitted_code"]
             )
+            data["is_follow_up"] = False
+        elif (
+            previous_turn is not None
+            and previous_turn["probe_eligible"]
+            and _is_weak_answer(previous_turn["candidate_answer"])
+        ):
+            data = {
+                "question": (
+                    f'You answered "{previous_turn["candidate_answer"]}" -- why? Can you explain your '
+                    f'reasoning for "{previous_turn["question"]}" in more depth?'
+                ),
+                "model_answer": previous_turn["model_answer"],
+                "rubric_keywords": previous_turn["rubric_keywords"],
+                "is_follow_up": True,
+            }
+        else:
+            fixture = _MOCK_FIXTURES.get((topic, pattern))
+            if fixture is None:
+                raise TechnicalQuestionGenerationError(
+                    f"No mock fixture for topic={topic!r} pattern={pattern!r}"
+                )
+            data = copy.deepcopy(fixture)
+            data["is_follow_up"] = False
 
-        data = copy.deepcopy(fixture)
         data["topic"] = topic
         data["pattern"] = pattern
         data["difficulty"] = difficulty

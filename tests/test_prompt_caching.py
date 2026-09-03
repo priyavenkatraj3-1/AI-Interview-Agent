@@ -183,6 +183,7 @@ async def test_technical_interviewer_call_shape():
         "question": "Explain stacks vs queues.",
         "model_answer": "A stack is LIFO; a queue is FIFO.",
         "rubric_keywords": ["stack", "queue", "lifo", "fifo"],
+        "is_follow_up": False,
     }
     client = FakeClient([FakeResponse(valid)])
     agent = TechnicalInterviewerAgent(client=client)

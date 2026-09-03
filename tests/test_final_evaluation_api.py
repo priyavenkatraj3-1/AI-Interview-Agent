@@ -104,7 +104,15 @@ def test_full_flow_generates_final_evaluation_with_expected_shape(client, sessio
         "total": APTITUDE_TOTAL_QUESTIONS,
         "percentage": 100.0,
     }
-    assert body["coding"] == {"score": TOTAL_PROBLEMS, "total": TOTAL_PROBLEMS, "percentage": 100.0}
+    # Functional fields: exact, unchanged shape/values.
+    assert body["coding"]["score"] == TOTAL_PROBLEMS
+    assert body["coding"]["total"] == TOTAL_PROBLEMS
+    assert body["coding"]["percentage"] == 100.0
+    # Code-quality result: separate from the functional fields above, now
+    # included in the coding round summary (never a separate extra round).
+    assert body["coding"]["average_quality_score"] is not None
+    assert 0 <= body["coding"]["average_quality_score"] <= 100
+    assert body["coding"]["quality_feedback_summary"]
     assert body["technical"] == {
         "score": TECHNICAL_TOTAL_QUESTIONS,
         "total": TECHNICAL_TOTAL_QUESTIONS,

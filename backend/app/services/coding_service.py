@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.attributes import flag_modified
 
-from agents.code_executor.executor import UnsafeCodeError, run_test_cases
+from agents.code_executor.dispatcher import UnsafeCodeError, run_test_cases
 from agents.code_problem_generator.code_problem_generator import build_code_problem_generator
 from agents.code_problem_generator.taxonomy import (
     START_DIFFICULTY,
@@ -30,6 +30,7 @@ from agents.code_problem_generator.taxonomy import (
     pick_pattern,
     session_rng,
 )
+from agents.code_quality.code_quality_reviewer import build_code_quality_reviewer
 from agents.grader.grader import GraderAgent
 from agents.orchestrator.orchestrator import get_next_stage
 from app.models.session import CostLog, InterviewSession, StageProgress
@@ -38,6 +39,13 @@ STAGE = "coding"
 
 _code_problem_generator = build_code_problem_generator()
 _grader = GraderAgent()
+# Separate responsibility from _grader: functional correctness (hidden-test
+# pass/fail) is graded by _grader; code QUALITY (readability, naming,
+# structure, duplication, best practices, maintainability) is reviewed
+# independently by _code_quality_reviewer, called after functional grading
+# in submit_code() and never feeding back into is_correct/passed_count. See
+# agents/code_quality/code_quality_reviewer.py.
+_code_quality_reviewer = build_code_quality_reviewer()
 
 
 class CodingServiceError(Exception):
@@ -113,11 +121,19 @@ def _public_problem(problem: dict) -> dict:
     }
 
 
-def _public_results(results: list[dict]) -> list[dict]:
+# Shown in place of a hidden test case's real args/expected value in any
+# student-facing response -- "hidden" must hold after submission too, not
+# just before it. Sample/public test results (run_code, reveal_io=True)
+# still show the real input/expected_output, since those are meant to be
+# visible.
+_HIDDEN_IO_PLACEHOLDER = "[hidden]"
+
+
+def _public_results(results: list[dict], *, reveal_io: bool) -> list[dict]:
     return [
         {
-            "input": json.dumps(r["args"]),
-            "expected_output": json.dumps(r["expected"]),
+            "input": json.dumps(r["args"]) if reveal_io else _HIDDEN_IO_PLACEHOLDER,
+            "expected_output": json.dumps(r["expected"]) if reveal_io else _HIDDEN_IO_PLACEHOLDER,
             "actual_output": json.dumps(r["actual"]) if r["error"] is None else None,
             "passed": r["passed"],
             "error": r["error"],
@@ -228,7 +244,7 @@ async def run_code(db: Session, session_id: str, code: str) -> dict:
         raise CodingServiceError(str(exc), status_code=422) from exc
 
     return {
-        "results": _public_results(summary["results"]),
+        "results": _public_results(summary["results"], reveal_io=True),
         "passed_count": summary["passed_count"],
         "total_count": summary["total_count"],
     }
@@ -253,6 +269,24 @@ async def submit_code(db: Session, session_id: str, code: str) -> dict:
     passed_count: int = grade_result.data["passed_count"]
     total_count: int = grade_result.data["total_count"]
 
+    # Code-quality review: runs AFTER functional (hidden-test) grading is
+    # already final, as its own independent step -- never reads/writes
+    # is_correct/passed_count/total_count above, so it can't influence the
+    # functional result either way. Only ever given the candidate's code
+    # plus the problem's public title/description/function_name -- never
+    # hidden_tests/public_tests/examples, so there is nothing hidden to
+    # leak to (or through) this call.
+    quality_result = await _code_quality_reviewer.run(
+        code=code,
+        function_name=current_problem["function_name"],
+        title=current_problem["title"],
+        description=current_problem["description"],
+    )
+    _log_cost(db, session_id, _code_quality_reviewer.name, quality_result.usage)
+    quality_score: int = quality_result.data["quality_score"]
+    quality_feedback: str = quality_result.data["feedback"]
+    quality_dimensions: dict = quality_result.data["dimensions"]
+
     details = progress.details
     presented_at = datetime.fromisoformat(current_problem["presented_at"])
     submitted_at = datetime.now(timezone.utc)
@@ -270,6 +304,9 @@ async def submit_code(db: Session, session_id: str, code: str) -> dict:
             "passed_count": passed_count,
             "total_count": total_count,
             "is_correct": is_correct,
+            "quality_score": quality_score,
+            "quality_feedback": quality_feedback,
+            "quality_dimensions": quality_dimensions,
             "presented_at": current_problem["presented_at"],
             "submitted_at": submitted_at.isoformat(),
             "response_time_seconds": response_time_seconds,
@@ -309,7 +346,10 @@ async def submit_code(db: Session, session_id: str, code: str) -> dict:
         "is_correct": is_correct,
         "passed_count": passed_count,
         "total_count": total_count,
-        "results": _public_results(summary["results"]),
+        "results": _public_results(summary["results"], reveal_io=False),
+        "quality_score": quality_score,
+        "quality_feedback": quality_feedback,
+        "quality_dimensions": quality_dimensions,
         "score": details["score"],
         "difficulty": details["difficulty"],
         "current_index": min(details["current_index"], TOTAL_PROBLEMS),
@@ -339,6 +379,14 @@ def get_result(db: Session, session_id: str) -> dict:
         if p["is_correct"]:
             bucket["correct"] += 1
 
+    # Separate from functional score/percentage above -- averaged across
+    # this round's submissions' independent code-quality reviews (see
+    # submit_code()'s _code_quality_reviewer call). None only if the round
+    # somehow has no history yet (not reachable once status=="completed",
+    # since TOTAL_PROBLEMS >= 1 submissions are required to get there).
+    quality_scores = [p["quality_score"] for p in history if p.get("quality_score") is not None]
+    average_quality_score = round(sum(quality_scores) / len(quality_scores), 2) if quality_scores else None
+
     return {
         "session_id": session.id,
         "target_company": session.target_company,
@@ -352,4 +400,5 @@ def get_result(db: Session, session_id: str) -> dict:
         "completed_at": details.get("completed_at"),
         "history": history,
         "topic_breakdown": topic_breakdown,
+        "average_quality_score": average_quality_score,
     }

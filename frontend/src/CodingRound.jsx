@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { runCode, startCoding, submitCode } from './api/coding'
 
-function TestCaseResults({ summary, label }) {
+function TestCaseResults({ summary, label, hideIO = false }) {
   return (
     <div className="test-case-results">
       <p>
@@ -14,15 +14,23 @@ function TestCaseResults({ summary, label }) {
               Test {index + 1}: {result.passed ? 'Passed' : 'Failed'}
               {result.timed_out ? ' (timed out)' : ''}
             </p>
-            <p className="test-case-io">
-              Input: <code>{result.input}</code> · Expected: <code>{result.expected_output}</code>
-              {result.actual_output !== null && (
-                <>
-                  {' '}
-                  · Got: <code>{result.actual_output}</code>
-                </>
-              )}
-            </p>
+            {hideIO ? (
+              result.actual_output !== null && (
+                <p className="test-case-io">
+                  Got: <code>{result.actual_output}</code>
+                </p>
+              )
+            ) : (
+              <p className="test-case-io">
+                Input: <code>{result.input}</code> · Expected: <code>{result.expected_output}</code>
+                {result.actual_output !== null && (
+                  <>
+                    {' '}
+                    · Got: <code>{result.actual_output}</code>
+                  </>
+                )}
+              </p>
+            )}
             {result.error && <p className="error-text test-case-error">Error: {result.error}</p>}
             {result.stdout && <pre className="code-block">stdout:{'\n'}{result.stdout}</pre>}
             {result.stderr && <pre className="code-block">stderr:{'\n'}{result.stderr}</pre>}
@@ -194,7 +202,22 @@ function CodingRound({ sessionId, onCompleted }) {
           ) : (
             <>
               <p>{feedback.is_correct ? '✅ All hidden tests passed' : '❌ Some hidden tests failed'}</p>
-              <TestCaseResults summary={feedback} label="Hidden test results" />
+              <TestCaseResults summary={feedback} label="Hidden test results" hideIO />
+              {feedback.quality_score !== undefined && (
+                <div className="feedback">
+                  <p>Code Quality Score: {feedback.quality_score}/100</p>
+                  {feedback.quality_feedback && <p className="explanation">{feedback.quality_feedback}</p>}
+                  {feedback.quality_dimensions && (
+                    <ul className="topic-breakdown">
+                      {Object.entries(feedback.quality_dimensions).map(([dimension, score]) => (
+                        <li key={dimension}>
+                          {dimension.replace(/_/g, ' ')}: {score}/100
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
             </>
           )}
         </div>

@@ -26,3 +26,16 @@ MODEL_STRONG = os.getenv("MODEL_STRONG", "claude-sonnet-5")
 # (see agents/code_problem_generator/code_problem_generator.py). Set
 # MOCK_MODE=false once credits/a valid ANTHROPIC_API_KEY are available.
 MOCK_MODE = os.getenv("MOCK_MODE", "true").strip().lower() in ("1", "true", "yes", "on")
+
+# Coding-round sandbox provider (see agents/code_executor/dispatcher.py).
+# "local" (default) keeps candidate code execution on the local subprocess
+# executor; "piston" routes it through the real Piston sandbox instead.
+# Only takes effect when MOCK_MODE=false -- MOCK_MODE always uses the local
+# executor regardless of this value, same as every other mock fallback in
+# this codebase.
+CODE_EXECUTION_PROVIDER = os.getenv("CODE_EXECUTION_PROVIDER", "local").strip().lower()
+
+# Base URL of the Piston instance to use when CODE_EXECUTION_PROVIDER=piston
+# (e.g. a self-hosted instance, or the public https://emkc.org/api/v2/piston).
+# No default: never hardcode a real sandbox endpoint in code.
+PISTON_API_URL = os.getenv("PISTON_API_URL", "").strip()

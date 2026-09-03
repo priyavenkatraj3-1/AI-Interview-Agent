@@ -20,8 +20,9 @@ from sqlalchemy.orm.attributes import flag_modified
 
 from agents.grader.grader import GraderAgent
 from agents.orchestrator.orchestrator import get_next_stage
-from agents.question_generator.question_generator import QuestionGeneratorAgent
+from agents.question_generator.question_generator import build_question_generator
 from agents.question_generator.taxonomy import (
+    MAX_TIME_PER_QUESTION_SECONDS,
     START_DIFFICULTY,
     SUPPORTED_COMPANIES,
     TOTAL_QUESTIONS,
@@ -34,7 +35,7 @@ from app.models.session import CostLog, InterviewSession, StageProgress
 
 STAGE = "aptitude"
 
-_question_generator = QuestionGeneratorAgent()
+_question_generator = build_question_generator()
 _grader = GraderAgent()
 
 
@@ -202,15 +203,27 @@ async def submit_answer(db: Session, session_id: str, selected_option: int) -> d
     if not (0 <= selected_option < len(current_question["options"])):
         raise AptitudeServiceError("selected_option out of range", status_code=422)
 
-    grade_result = await _grader.run(
-        selected_option=selected_option,
-        correct_option=current_question["correct_option"],
-    )
-    is_correct: bool = grade_result.data["is_correct"]
-
+    # Backend-enforced timer: presented_at was set by this server when the
+    # question was served (never client-supplied), so elapsed time here
+    # can't be spoofed by the frontend. Checked BEFORE grading -- a timed
+    # out submission never reaches the grader at all; it's deterministically
+    # wrong regardless of which option was selected, exactly like a normal
+    # incorrect answer for every downstream effect (score/difficulty/
+    # history/next question).
     presented_at = datetime.fromisoformat(current_question["presented_at"])
     answered_at = datetime.now(timezone.utc)
     response_time_seconds = max(0.0, (answered_at - presented_at).total_seconds())
+    timed_out = response_time_seconds > MAX_TIME_PER_QUESTION_SECONDS
+
+    is_correct: bool
+    if timed_out:
+        is_correct = False
+    else:
+        grade_result = await _grader.run(
+            selected_option=selected_option,
+            correct_option=current_question["correct_option"],
+        )
+        is_correct = grade_result.data["is_correct"]
 
     index = details["current_index"]
     details["asked_questions"].append(
@@ -223,6 +236,7 @@ async def submit_answer(db: Session, session_id: str, selected_option: int) -> d
             "correct_option": current_question["correct_option"],
             "selected_option": selected_option,
             "is_correct": is_correct,
+            "timed_out": timed_out,
             "difficulty": current_question["difficulty"],
             "explanation": current_question["explanation"],
             "presented_at": current_question["presented_at"],
@@ -264,6 +278,7 @@ async def submit_answer(db: Session, session_id: str, selected_option: int) -> d
 
     return {
         "is_correct": is_correct,
+        "timed_out": timed_out,
         "correct_option": current_question["correct_option"],
         "explanation": current_question["explanation"],
         "score": details["score"],

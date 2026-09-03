@@ -16,6 +16,16 @@ MIN_DIFFICULTY = 1
 MAX_DIFFICULTY = 5
 START_DIFFICULTY = 3
 
+# Backend-enforced per-question time limit (seconds). Checked server-side in
+# app.services.aptitude_service.submit_answer() against `presented_at` (set
+# by the backend when the question was served, never client-supplied) vs.
+# the wall-clock time the answer is actually submitted -- not merely a
+# frontend display value the client could ignore. Exceeding this marks the
+# question timed out and incorrect regardless of the submitted
+# selected_option, exactly like a wrong answer for scoring/difficulty
+# purposes.
+MAX_TIME_PER_QUESTION_SECONDS = 90
+
 DIFFICULTY_LABELS: dict[int, str] = {
     1: "very easy",
     2: "easy",
