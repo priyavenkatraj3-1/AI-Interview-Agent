@@ -287,3 +287,177 @@ def test_factory_returns_real_agent_when_mock_mode_disabled(monkeypatch):
     monkeypatch.setattr(qg_module, "MOCK_MODE", False)
     agent = build_question_generator()
     assert isinstance(agent, QuestionGeneratorAgent)
+
+
+# --- Taxonomy coverage / quality (placement-test mix, not addition-only) ---
+
+import re
+
+from agents.question_generator.taxonomy import APTITUDE_TAXONOMY
+
+_ADDITION_ONLY_RE = re.compile(r"^What is \d+ \+ \d+\?$")
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_covers_every_taxonomy_pattern_self_consistently():
+    """Every (topic, pattern) in the taxonomy -- not just 'quantitative' --
+    must produce a well-formed, self-consistent MCQ: exactly 4 options, a
+    correct_option that indexes into them, and an explanation that actually
+    names the labeled correct answer."""
+    agent = MockQuestionGeneratorAgent()
+    for topic, patterns in APTITUDE_TAXONOMY.items():
+        for pattern in patterns:
+            result = await agent.run(
+                target_company="TCS_NQT",
+                topic=topic,
+                pattern=pattern,
+                difficulty=3,
+                previous_questions=[],
+            )
+            data = result.data
+            assert data["question"], f"{topic}/{pattern} produced an empty question"
+            assert len(data["options"]) == 4, f"{topic}/{pattern} did not produce 4 options"
+            assert len(set(data["options"])) == 4, f"{topic}/{pattern} produced duplicate options"
+            assert 0 <= data["correct_option"] <= 3
+            correct_value = data["options"][data["correct_option"]]
+            assert correct_value in data["explanation"], (
+                f"{topic}/{pattern}: labeled correct option {correct_value!r} not found in "
+                f"explanation {data['explanation']!r}"
+            )
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_is_not_limited_to_simple_addition():
+    """Regression guard for the old MockQuestionGeneratorAgent, which asked
+    'What is X + Y?' for every single topic/pattern regardless of what was
+    requested. Across the full taxonomy, none of the generated questions
+    should be that generic addition template."""
+    agent = MockQuestionGeneratorAgent()
+    seen_question_bodies = set()
+    for topic, patterns in APTITUDE_TAXONOMY.items():
+        for pattern in patterns:
+            result = await agent.run(
+                target_company="TCS_NQT",
+                topic=topic,
+                pattern=pattern,
+                difficulty=3,
+                previous_questions=[],
+            )
+            # Strip the "[Topic / Pattern, Difficulty N] " label to check the
+            # actual question body.
+            body = result.data["question"].split("] ", 1)[-1]
+            assert not _ADDITION_ONLY_RE.match(body), f"{topic}/{pattern} fell back to plain addition: {body!r}"
+            seen_question_bodies.add(body)
+    # Distinct patterns should produce distinct question content, not one
+    # template reused everywhere.
+    assert len(seen_question_bodies) > 20
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_produces_different_categories_across_a_session():
+    """Simulates one aptitude session's worth of topic/pattern draws (as
+    aptitude_service would supply them) and checks more than one topic
+    bucket is actually exercised -- i.e. the round is a real placement-test
+    mix, not all quantitative or all one pattern."""
+    agent = MockQuestionGeneratorAgent()
+    topics_seen = set()
+    patterns_seen = set()
+    previous_questions: list[str] = []
+    for i, topic in enumerate(["quantitative", "logical_reasoning", "verbal_ability"] * 5):
+        pattern = APTITUDE_TAXONOMY[topic][i % len(APTITUDE_TAXONOMY[topic])]
+        result = await agent.run(
+            target_company="TCS_NQT",
+            topic=topic,
+            pattern=pattern,
+            difficulty=3,
+            previous_questions=previous_questions,
+        )
+        topics_seen.add(result.data["topic"])
+        patterns_seen.add(result.data["pattern"])
+        previous_questions.append(result.data["question"])
+
+    assert topics_seen == {"quantitative", "logical_reasoning", "verbal_ability"}
+    assert len(patterns_seen) > 5
+    # No duplicate question text within the simulated session.
+    assert len(previous_questions) == len(set(previous_questions))
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_difficulty_levels_are_all_usable():
+    """Easy -> medium -> hard (the adaptive difficulty scale in taxonomy.py)
+    must each independently produce a valid, self-consistent question for a
+    representative spread of patterns."""
+    from agents.question_generator.taxonomy import MAX_DIFFICULTY, MIN_DIFFICULTY
+
+    agent = MockQuestionGeneratorAgent()
+    representative_patterns = [
+        ("quantitative", "percentages"),
+        ("quantitative", "time_speed_and_distance"),
+        ("logical_reasoning", "number_series"),
+        ("logical_reasoning", "syllogism"),
+    ]
+    for topic, pattern in representative_patterns:
+        for difficulty in range(MIN_DIFFICULTY, MAX_DIFFICULTY + 1):
+            result = await agent.run(
+                target_company="TCS_NQT",
+                topic=topic,
+                pattern=pattern,
+                difficulty=difficulty,
+                previous_questions=[],
+            )
+            assert result.data["difficulty"] == difficulty
+            assert len(result.data["options"]) == 4
+            assert 0 <= result.data["correct_option"] <= 3
+
+
+_BLOOD_RELATION_WORDS = {
+    "father", "mother", "grandfather", "grandmother", "uncle", "aunt",
+    "brother", "sister", "cousin", "nephew",
+}
+
+
+@pytest.mark.asyncio
+async def test_blood_relations_produces_genuine_family_relationship_questions():
+    """Blood Relations must ask "how is X related to Y" over a chain of
+    named family members, with the correct option being a real relationship
+    word -- not an arithmetic question mislabeled as blood_relations."""
+    agent = MockQuestionGeneratorAgent()
+    for idx in range(8):
+        previous_questions = [f"filler question {i}" for i in range(idx)]
+        result = await agent.run(
+            target_company="TCS_NQT",
+            topic="logical_reasoning",
+            pattern="blood_relations",
+            difficulty=3,
+            previous_questions=previous_questions,
+        )
+        data = result.data
+        body = data["question"].split("] ", 1)[-1]
+        assert "related to" in body
+        assert re.search(r"\bis the\b.*\bof\b", body), f"not a relationship chain: {body!r}"
+        for option in data["options"]:
+            assert option in _BLOOD_RELATION_WORDS, f"non-relationship option: {option!r}"
+        assert data["options"][data["correct_option"]] in _BLOOD_RELATION_WORDS
+
+
+@pytest.mark.asyncio
+async def test_mock_generator_correct_option_position_is_randomized():
+    """Regression guard for the old MockQuestionGeneratorAgent, which always
+    put the correct answer at a fixed index (1) for every question. Across a
+    varied sample of topic/pattern/session-position draws, the correct
+    option's position must vary rather than sit at one constant index."""
+    agent = MockQuestionGeneratorAgent()
+    positions_seen: set[int] = set()
+    for topic, patterns in APTITUDE_TAXONOMY.items():
+        for pattern in patterns:
+            for idx in range(4):
+                previous_questions = [f"filler question {i}" for i in range(idx)]
+                result = await agent.run(
+                    target_company="TCS_NQT",
+                    topic=topic,
+                    pattern=pattern,
+                    difficulty=3,
+                    previous_questions=previous_questions,
+                )
+                positions_seen.add(result.data["correct_option"])
+    assert len(positions_seen) >= 3, f"correct_option barely varies across a large sample: {positions_seen}"

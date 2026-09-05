@@ -48,22 +48,31 @@ APTITUDE_TAXONOMY: dict[str, list[str]] = {
         "time_speed_and_distance",
         "ratio_and_proportion",
         "averages",
-        "number_series",
+        "number_system",
         "permutations_and_combinations",
         "probability",
         "ages",
         "mixtures_and_alligation",
     ],
+    # Includes both classic logical-reasoning patterns (series, coding-decoding,
+    # blood relations, directions, syllogism, odd-one-out) and the
+    # analytical-reasoning style patterns TCS NQT / Infosys / Wipro group
+    # alongside them (puzzles, statement/conclusion, pattern-based reasoning,
+    # basic data interpretation).
     "logical_reasoning": [
-        "series_completion",
+        "number_series",
+        "letter_series",
         "coding_decoding",
         "blood_relations",
         "direction_sense",
         "syllogism",
+        "odd_one_out",
         "seating_arrangement",
         "puzzles",
         "data_sufficiency",
         "statement_and_conclusion",
+        "pattern_based_reasoning",
+        "data_interpretation",
     ],
     "verbal_ability": [
         "synonyms_antonyms",

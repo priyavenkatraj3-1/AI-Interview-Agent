@@ -10,17 +10,21 @@ output feature, so a forced `tool_choice` is the reliable structured-output
 mechanism available here). The result is always parsed from `tool_use.input`,
 never scraped out of free text.
 
-Also defines MockQuestionGeneratorAgent: a minimal, fully offline,
-deterministic stand-in used instead whenever MOCK_MODE is enabled (the
-default — see agents/config.py), mirroring the MOCK_MODE factory pattern
-used by every other stage's generator agent (e.g.
+Also defines MockQuestionGeneratorAgent: a fully offline, deterministic
+stand-in used instead whenever MOCK_MODE is enabled (the default — see
+agents/config.py), mirroring the MOCK_MODE factory pattern used by every
+other stage's generator agent (e.g.
 agents/code_problem_generator/code_problem_generator.py). Unlike those,
-this is not a per-topic/pattern fixture bank — the aptitude taxonomy has 27
-topic/pattern combinations, and hand-authoring a fixture for each would be
-exactly the kind of large hardcoded question bank this project deliberately
-avoids (see APTITUDE_TAXONOMY in taxonomy.py). Instead it synthesizes one
-small, genuinely self-consistent arithmetic MCQ per call from whatever
-topic/pattern/difficulty it's asked for. Both classes satisfy the same
+this is not a fixed-text fixture bank — the aptitude taxonomy has 31
+topic/pattern combinations (see APTITUDE_TAXONOMY in taxonomy.py), and
+hand-authoring canned question text for each would be exactly the kind of
+large hardcoded question bank this project deliberately avoids. Instead
+mock_patterns.generate_mock_question() procedurally derives one
+self-consistent MCQ per call from the actual arithmetic/logical rule behind
+whatever pattern it's asked for (percentages, profit & loss, time & work,
+number series, blood relations, syllogism, data interpretation, etc.),
+using freshly randomized numbers/entities each call — never the same
+"a + b" question reused across every topic. Both classes satisfy the same
 BaseAgent contract, so app.services.aptitude_service holds whichever
 build_question_generator() returns without branching on MOCK_MODE itself.
 Set MOCK_MODE=false (with a valid ANTHROPIC_API_KEY) to use the real
@@ -35,6 +39,7 @@ from agents.config import ANTHROPIC_API_KEY, MOCK_MODE
 from agents.model_router import resolve_model
 from agents.pricing import estimate_cost_usd
 
+from .mock_patterns import generate_mock_question
 from .taxonomy import DIFFICULTY_LABELS
 
 EMIT_QUESTION_TOOL_NAME = "emit_aptitude_question"
@@ -211,13 +216,15 @@ class MockQuestionGeneratorAgent(BaseAgent):
     """Deterministic, fully offline stand-in for QuestionGeneratorAgent.
 
     Used when MOCK_MODE is enabled (the default — no Anthropic API credits
-    currently available): synthesizes one small, genuinely-correct
-    arithmetic MCQ per call, using only the requested topic/pattern/
-    difficulty and how many questions have already been asked this session
-    (`len(previous_questions)`) — never a Claude call, never a per-topic
-    fixture bank. A clearly-labeled dev/demo fallback, not the intended
-    production path (which stays "no hardcoded question bank" via the real
-    generator above)."""
+    currently available): synthesizes one genuinely-correct MCQ per call via
+    mock_patterns.generate_mock_question(), which procedurally derives real
+    quantitative/logical/analytical/verbal content from the requested
+    topic/pattern/difficulty and how many questions have already been asked
+    this session (`len(previous_questions)`, used to keep consecutive
+    same-pattern questions from colliding) — never a Claude call, never a
+    fixed question-text bank. A clearly-labeled dev/demo fallback, not the
+    intended production path (which stays "no hardcoded question bank" via
+    the real generator above)."""
 
     name = "question_generator_mock"
     default_tier = ModelTier.CHEAP
@@ -228,27 +235,10 @@ class MockQuestionGeneratorAgent(BaseAgent):
         difficulty: int = kwargs["difficulty"]
         previous_questions: list[str] = kwargs.get("previous_questions", [])
 
-        # Varies deterministically with how far into the session we are
-        # (plus difficulty) so consecutive calls never collide with the
-        # is_similar() duplicate-question check a real caller might apply.
-        seed = len(previous_questions) + difficulty
-        a, b = seed + 2, seed + 5
-        correct_sum = a + b
-        options = [correct_sum - 1, correct_sum, correct_sum + 1, correct_sum + 2]
-        correct_option = 1  # index of correct_sum in options above
-
-        data = {
-            "question": (
-                f"[{topic.replace('_', ' ')} / {pattern.replace('_', ' ')}, difficulty {difficulty}] "
-                f"What is {a} + {b}?"
-            ),
-            "options": [str(o) for o in options],
-            "correct_option": correct_option,
-            "explanation": f"{a} + {b} = {correct_sum}.",
-            "topic": topic,
-            "pattern": pattern,
-            "difficulty": difficulty,
-        }
+        data = generate_mock_question(topic, pattern, difficulty, previous_questions)
+        data["topic"] = topic
+        data["pattern"] = pattern
+        data["difficulty"] = difficulty
         return AgentResult(data=data, usage=None)
 
 
